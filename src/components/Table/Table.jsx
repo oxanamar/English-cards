@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Table.css";
 
 function Table() {
   // State to manage the first row's input fields
@@ -63,7 +64,7 @@ function Table() {
 
   return (
     <div className="table-container">
-      <table border="1" cellPadding="10" cellSpacing="0">
+      <table>
         <thead>
           <tr>
             <th>#</th>
@@ -99,8 +100,12 @@ function Table() {
               />
             </td>
             <td>
-              <button onClick={saveRow}>Save</button>
-              <button onClick={clearInputs}>Clear</button>
+              <button className="save" onClick={saveRow}>
+                Save
+              </button>
+              <button className="clear" onClick={clearInputs}>
+                Clear
+              </button>
             </td>
           </tr>
 
@@ -153,7 +158,9 @@ function Table() {
                 ) : (
                   <button onClick={() => toggleEdit(index)}>Edit</button>
                 )}
-                <button onClick={() => deleteRow(index)}>Delete</button>
+                <button className="delete" onClick={() => deleteRow(index)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

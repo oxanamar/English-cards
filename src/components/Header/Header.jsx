@@ -1,11 +1,13 @@
-// import Header.css from "./header"
+import "./Header.css";
 
 function Header() {
   return (
     <div className="header-container">
       <h1>English cards</h1>
-      <button></button>
-      <button></button>
+      <div>
+        <button>Play</button>
+        <button>Home</button>
+      </div>
     </div>
   );
 }
