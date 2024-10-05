@@ -1,12 +1,21 @@
-import "./Header.css";
+import React from "react";
+import styles from "./header.module.css";
+import { FaPlay, FaHome } from "react-icons/fa";
 
-function Header() {
+function Header({ onPlay, onHome, isPlaying }) {
   return (
-    <div className="header-container">
-      <h1>English cards</h1>
+    <div className={styles["header-container"]}>
+      <h1>English Cards</h1>
       <div>
-        <button>Play</button>
-        <button>Home</button>
+        {isPlaying ? (
+          <button onClick={onHome} className={styles["home-button"]}>
+            <FaHome style={{ fontSize: "2.5rem" }} />
+          </button>
+        ) : (
+          <button onClick={onPlay} className={styles["play-button"]}>
+            <FaPlay style={{ fontSize: "2.5rem" }} />
+          </button>
+        )}
       </div>
     </div>
   );

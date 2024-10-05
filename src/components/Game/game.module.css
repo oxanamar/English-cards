@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.card-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.card {
+  border: 2px solid #ddd;
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  color: #009688;
+  margin-bottom: 10px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.btn-check {
+  padding: 10px 20px;
+  background-color: rgba(198, 86, 105, 0.784);
+  color: #fff;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+.btn-check:hover {
+  background-color: rgb(198, 86, 105);
+}
+
+.russian {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  cursor: pointer;
+  color: rgb(198, 86, 105);
+  font-size: 20px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.btn-nav {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.btn-nav:disabled {
+  color: #ccc;
+}
+
+.btn-nav:hover {
+  color: rgb(198, 86, 105);
+  background-color: #fff;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
