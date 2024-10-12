@@ -1,16 +1,14 @@
 * {
-  margin: 0 20px;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "Arial", sans-serif;
 }
 
 table {
-  width: 100%;
+  width: 80%;
   /* border-collapse: collapse; */
   background: linear-gradient(to right, #4da6ff, #003366);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 0;
+  margin: 5rem auto;
+  overflow: hidden;
 }
 
 th,
@@ -76,4 +74,15 @@ button {
 
 .btn-save:hover {
   background-color: #45a049;
+}
+
+@media (max-width: 731px) {
+  th:nth-child(1),
+  th:nth-child(3),
+  th:nth-child(5),
+  td:nth-child(1),
+  td:nth-child(3),
+  td:nth-child(5) {
+    display: none;
+  }
 }

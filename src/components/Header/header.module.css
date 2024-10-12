@@ -5,14 +5,19 @@
 }
 
 .header-container {
+  width: 100%;
+  /* max-width: 1200px; */
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(to right, #0066cc, #003366);
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 1rem 3rem;
   margin-bottom: 2rem;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .header-container button {
