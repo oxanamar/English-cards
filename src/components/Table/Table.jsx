@@ -50,9 +50,11 @@ function Table() {
 
   // Handler to delete a word from the table
   const deleteRow = (index) => {
-    const updatedRows = [...rows];
-    updatedRows.splice(index, 1); // Remove the row by index
-    setRows(updatedRows);
+    if (window.confirm("Are you sure you want to delete this row?")) {
+      const updatedRows = [...rows];
+      updatedRows.splice(index, 1); // Remove the row by index
+      setRows(updatedRows);
+    }
   };
 
   // Handler to toggle edit mode for a word
