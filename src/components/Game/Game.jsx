@@ -74,7 +74,7 @@ function Game() {
       </div>
 
       <p>
-        You've learned {currentCardIndex} out of {data.length} words!
+        You've learned {currentCardIndex + 1} out of {data.length} words!
       </p>
     </div>
   );
