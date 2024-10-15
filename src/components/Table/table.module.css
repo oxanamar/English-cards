@@ -46,6 +46,7 @@ button {
 
 .btn-edit {
   background-color: #2196f3;
+  margin-right: 3px;
 }
 
 .btn-edit:hover {
@@ -70,6 +71,7 @@ button {
 
 .btn-save {
   background-color: #4caf50;
+  margin-right: 3px;
 }
 
 .btn-save:hover {
