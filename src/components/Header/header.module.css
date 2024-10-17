@@ -20,12 +20,24 @@
   box-sizing: border-box;
 }
 
+.logo-container {
+  cursor: pointer;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+}
+.btn-container {
+  display: flex;
+}
+
 .header-container button {
   display: flex;
   justify-content: center;
   width: 80px;
   height: 80px;
-  background-color: pink;
+  background-color: rgb(115, 109, 211);
   align-items: center;
   color: #fff;
   padding: 10px 10px;
@@ -36,5 +48,5 @@
 }
 
 .header-container button:hover {
-  background-color: rgb(224, 141, 155);
+  background-color: rgb(84, 209, 18);
 }

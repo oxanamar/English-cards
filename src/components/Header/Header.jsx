@@ -1,21 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./header.module.css";
 import { FaPlay, FaHome } from "react-icons/fa";
+import logo from "../../English Cards Logo.png";
 
-function Header({ onPlay, onHome, isPlaying }) {
+function Header() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles["header-container"]}>
-      <h1>English Cards</h1>
-      <div>
-        {isPlaying ? (
-          <button onClick={onHome} className={styles["home-button"]}>
-            <FaHome style={{ fontSize: "2.5rem" }} />
-          </button>
-        ) : (
-          <button onClick={onPlay} className={styles["play-button"]}>
-            <FaPlay style={{ fontSize: "2.5rem" }} />
-          </button>
-        )}
+      <div className={styles["logo-container"]} onClick={() => navigate("/")}>
+        <img src={logo} alt="English Cards Logo" className={styles.logo} />
+      </div>
+      <div className={styles["btn-container"]}>
+        <button onClick={() => navigate("/")} className={styles["home-button"]}>
+          <FaHome style={{ fontSize: "2.5rem" }} />
+        </button>
+        <button
+          onClick={() => navigate("/game")}
+          className={styles["play-button"]}
+        >
+          <FaPlay style={{ fontSize: "2.5rem" }} />
+        </button>
       </div>
     </div>
   );

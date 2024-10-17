@@ -70,12 +70,12 @@ button {
 }
 
 .btn-save {
-  background-color: #4caf50;
+  background-color: rgb(84, 209, 18);
   margin-right: 3px;
 }
 
 .btn-save:hover {
-  background-color: #45a049;
+  background-color: rgb(84, 194, 24);
 }
 
 @media (max-width: 731px) {

@@ -29,7 +29,7 @@
 }
 
 .card h2 {
-  color: #009688;
+  color: rgb(84, 209, 18);
   margin-bottom: 10px;
   margin-top: 50px;
   margin-bottom: 20px;
@@ -37,7 +37,7 @@
 
 .btn-check {
   padding: 10px 20px;
-  background-color: rgba(198, 86, 105, 0.784);
+  background-color: rgb(115, 109, 211);
   color: #fff;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -45,14 +45,14 @@
 }
 
 .btn-check:hover {
-  background-color: rgb(198, 86, 105);
+  background-color: rgb(93, 84, 214);
 }
 
 .russian {
   margin-top: 50px;
   margin-bottom: 50px;
   cursor: pointer;
-  color: rgb(198, 86, 105);
+  color: rgb(115, 109, 211);
   font-size: 20px;
 }
 
