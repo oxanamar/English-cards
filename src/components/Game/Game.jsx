@@ -7,15 +7,28 @@ function Game() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   // Toggles the Russian translation
   const [showRussian, setShowRussian] = useState(false);
-  // Get the current card from the data
+  // Stores the IDs of learned words
+  const [learnedWords, setLearnedWords] = useState(new Set());
+
   const currentCard = data[currentCardIndex];
+
+  // Function to mark a word as learned when "Check" is clicked
+  const handleCheck = () => {
+    setShowRussian(true);
+
+    // Add the current word to the set of learned words (avoiding duplicates)
+    setLearnedWords((prevLearnedWords) => {
+      const updatedSet = new Set(prevLearnedWords);
+      updatedSet.add(currentCardIndex); // Track word by its index
+      return updatedSet;
+    });
+  };
 
   // Go to the next card
   const nextCard = () => {
     if (currentCardIndex < data.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
-      // Hide the Russian translation when going to the next card
-      setShowRussian(false);
+      setShowRussian(false); // Hide Russian translation for new card
     }
   };
 
@@ -23,8 +36,7 @@ function Game() {
   const prevCard = () => {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
-      // Hide the Russian translation when going to the previous card
-      setShowRussian(false);
+      setShowRussian(false); // Hide Russian translation for new card
     }
   };
 
@@ -45,7 +57,6 @@ function Game() {
             <p>{currentCard.transcription}</p>
 
             {showRussian ? (
-              // Clicking on the word will bring the button back
               <p
                 className={styles.russian}
                 onClick={() => setShowRussian(false)}
@@ -53,11 +64,7 @@ function Game() {
                 {currentCard.russian}
               </p>
             ) : (
-              // Clicking on "Check" shows the word
-              <button
-                className={styles["btn-check"]}
-                onClick={() => setShowRussian(true)}
-              >
+              <button className={styles["btn-check"]} onClick={handleCheck}>
                 Check
               </button>
             )}
@@ -74,7 +81,7 @@ function Game() {
       </div>
 
       <p>
-        You've learned {currentCardIndex + 1} out of {data.length} words!
+        You've learned {learnedWords.size} out of {data.length} words!
       </p>
     </div>
   );
