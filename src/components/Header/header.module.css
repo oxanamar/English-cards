@@ -6,12 +6,19 @@
 
 .header-container {
   width: 100%;
-  /* max-width: 1200px; */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to right, #0066cc, #003366);
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ); /* Transparent background to blend with the animated background */
+  backdrop-filter: blur(
+    8px
+  ); /* Optional: Add blur for enhanced visual effect */
   color: white;
   text-align: center;
   padding: 1rem 3rem;
@@ -25,9 +32,10 @@
 }
 
 .logo {
-  height: 100px;
+  height: 80px; /* Adjust height for better layout */
   width: auto;
 }
+
 .btn-container {
   display: flex;
 }
@@ -35,18 +43,21 @@
 .header-container button {
   display: flex;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  background-color: rgb(115, 109, 211);
   align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: rgb(115, 109, 211);
   color: #fff;
-  padding: 10px 10px;
-  text-align: center;
-  margin: 4px 2px;
+  font-size: 1.5rem;
+  border: none;
+  padding: 10px;
+  margin: 0 10px;
   border-radius: 12px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .header-container button:hover {
   background-color: rgb(84, 209, 18);
+  transform: scale(1.1); /* Smooth scaling effect on hover */
 }

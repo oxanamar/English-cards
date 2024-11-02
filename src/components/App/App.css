@@ -1,0 +1,34 @@
+/* App.css */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Wrapper for the entire app, including header and main content */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(270deg, #6a11cb, #2575fc, #ff9a8b, #ff6a88);
+  background-size: 800% 800%;
+  animation: gradientAnimation 15s ease infinite;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Ensures the main content takes up space between the header and footer */
+.content-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}

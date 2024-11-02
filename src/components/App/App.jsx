@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
@@ -10,18 +10,20 @@ import "./App.css";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="app-container">
         <Header />
-        <Routes>
-          {/* Home page route */}
-          <Route path="/" element={<Table />} />
+        <div className="content-container">
+          <Routes>
+            {/* Home page route */}
+            <Route path="/" element={<Table />} />
 
-          {/* Game page route */}
-          <Route path="/game" element={<Game />} />
+            {/* Game page route */}
+            <Route path="/game" element={<Game />} />
 
-          {/* Catch-all route for unknown paths */}
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+            {/* Catch-all route for unknown paths */}
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>

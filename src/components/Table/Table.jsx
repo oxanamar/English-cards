@@ -4,7 +4,6 @@ import { FaSave, FaPen, FaTrash, FaSyncAlt } from "react-icons/fa";
 import styles from "./table.module.css";
 
 function Table() {
-  // State to manage the first row's input fields
   const [inputData, setInputData] = useState({
     id: "",
     english: "",
@@ -13,10 +12,9 @@ function Table() {
     collection: "",
   });
 
-  // State to manage the list of words (initially populated from data.js)
   const [rows, setRows] = useState(data);
+  const [attemptedSave, setAttemptedSave] = useState(false);
 
-  // Handler for updating the first row's input fields
   const handleChange = (field, value) => {
     setInputData({
       ...inputData,
@@ -24,8 +22,8 @@ function Table() {
     });
   };
 
-  // Handler to save the first row's data and add a new word to the table
   const saveRow = () => {
+    setAttemptedSave(true);
     if (
       inputData.id &&
       inputData.english &&
@@ -37,7 +35,6 @@ function Table() {
         ...rows,
         { ...inputData, tags: inputData.collection, isEditing: false },
       ]);
-      // Clear the input fields after saving
       setInputData({
         id: "",
         english: "",
@@ -45,19 +42,20 @@ function Table() {
         russian: "",
         collection: "",
       });
+      setAttemptedSave(false);
     }
   };
 
-  // Handler to delete a word from the table
+  const isInputEmpty = (field) => !inputData[field].trim();
+
   const deleteRow = (index) => {
     if (window.confirm("Are you sure you want to delete this row?")) {
       const updatedRows = [...rows];
-      updatedRows.splice(index, 1); // Remove the row by index
+      updatedRows.splice(index, 1);
       setRows(updatedRows);
     }
   };
 
-  // Handler to toggle edit mode for a word
   const toggleEdit = (index) => {
     setRows(
       rows.map((row, i) =>
@@ -66,19 +64,16 @@ function Table() {
     );
   };
 
-  // Handler for updating the fields of a word in edit mode
   const handleRowChange = (index, field, value) => {
     setRows(
       rows.map((row, i) => (i === index ? { ...row, [field]: value } : row))
     );
   };
 
-  // Handler to save changes after editing a word
   const saveRowChanges = (index) => {
     toggleEdit(index);
   };
 
-  // Handler to clear the input fields in the first row
   const clearInputs = () => {
     setInputData({
       id: "",
@@ -87,6 +82,7 @@ function Table() {
       russian: "",
       collection: "",
     });
+    setAttemptedSave(false);
   };
 
   return (
@@ -103,13 +99,15 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {/* First row with input fields to add a new word */}
           <tr>
             <td>
               <input
                 type="text"
                 value={inputData.id}
                 onChange={(e) => handleChange("id", e.target.value)}
+                className={
+                  attemptedSave && isInputEmpty("id") ? styles.errorInput : ""
+                }
               />
             </td>
             <td>
@@ -117,6 +115,11 @@ function Table() {
                 type="text"
                 value={inputData.english}
                 onChange={(e) => handleChange("english", e.target.value)}
+                className={
+                  attemptedSave && isInputEmpty("english")
+                    ? styles.errorInput
+                    : ""
+                }
               />
             </td>
             <td>
@@ -124,6 +127,11 @@ function Table() {
                 type="text"
                 value={inputData.transcription}
                 onChange={(e) => handleChange("transcription", e.target.value)}
+                className={
+                  attemptedSave && isInputEmpty("transcription")
+                    ? styles.errorInput
+                    : ""
+                }
               />
             </td>
             <td>
@@ -131,6 +139,11 @@ function Table() {
                 type="text"
                 value={inputData.russian}
                 onChange={(e) => handleChange("russian", e.target.value)}
+                className={
+                  attemptedSave && isInputEmpty("russian")
+                    ? styles.errorInput
+                    : ""
+                }
               />
             </td>
             <td>
@@ -138,10 +151,25 @@ function Table() {
                 type="text"
                 value={inputData.collection}
                 onChange={(e) => handleChange("collection", e.target.value)}
+                className={
+                  attemptedSave && isInputEmpty("collection")
+                    ? styles.errorInput
+                    : ""
+                }
               />
             </td>
             <td>
-              <button className={styles["btn-save"]} onClick={saveRow}>
+              <button
+                className={styles["btn-save"]}
+                onClick={saveRow}
+                disabled={
+                  !inputData.id ||
+                  !inputData.english ||
+                  !inputData.transcription ||
+                  !inputData.russian ||
+                  !inputData.collection
+                }
+              >
                 <FaSave />
               </button>
               <button className={styles["btn-clear"]} onClick={clearInputs}>
@@ -150,7 +178,6 @@ function Table() {
             </td>
           </tr>
 
-          {/* Display existing rows with edit and delete functionality */}
           {rows.map((row, index) => (
             <tr key={row.id}>
               <td>{row.id}</td>
@@ -197,7 +224,7 @@ function Table() {
                 {row.isEditing ? (
                   <input
                     type="text"
-                    value={row.tags} // tags represent the collection
+                    value={row.tags}
                     onChange={(e) =>
                       handleRowChange(index, "tags", e.target.value)
                     }

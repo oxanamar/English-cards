@@ -1,14 +1,23 @@
-* {
-  font-family: "Arial", sans-serif;
+/* Error input styling for red borders */
+.errorInput {
+  border: 2px solid red;
+  border-radius: 8px;
+}
+
+.table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
 table {
   width: 80%;
-  /* border-collapse: collapse; */
-  background: linear-gradient(to right, #4da6ff, #003366);
+  background: linear-gradient(to right, #a4508b, #5f0a87);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 5rem auto;
+  border-radius: 8px;
   overflow: hidden;
+  margin: 2rem 0;
 }
 
 th,
@@ -19,7 +28,7 @@ td {
 }
 
 th {
-  background-color: #004080;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 td {
@@ -44,6 +53,28 @@ button {
   transition: background-color 0.3s ease;
 }
 
+.btn-save {
+  background-color: rgb(84, 209, 18);
+  margin-right: 3px;
+}
+
+.btn-save:hover:enabled {
+  background-color: rgb(84, 194, 24);
+}
+
+.btn-save:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.btn-clear {
+  background-color: #ff9800;
+}
+
+.btn-clear:hover {
+  background-color: #e68a00;
+}
+
 .btn-edit {
   background-color: #2196f3;
   margin-right: 3px;
@@ -59,23 +90,6 @@ button {
 
 .btn-delete:hover {
   background-color: #e53935;
-}
-
-.btn-clear {
-  background-color: #ff9800;
-}
-
-.btn-clear:hover {
-  background-color: #e68a00;
-}
-
-.btn-save {
-  background-color: rgb(84, 209, 18);
-  margin-right: 3px;
-}
-
-.btn-save:hover {
-  background-color: rgb(84, 194, 24);
 }
 
 @media (max-width: 731px) {
