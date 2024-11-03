@@ -46,7 +46,11 @@
   align-items: center;
   width: 60px;
   height: 60px;
-  background-color: rgb(115, 109, 211);
+  background: linear-gradient(
+    to right,
+    #a4508b,
+    #6a92e4
+  ); /* Pink to blue gradient */
   color: #fff;
   font-size: 1.5rem;
   border: none;
@@ -58,6 +62,10 @@
 }
 
 .header-container button:hover {
-  background-color: rgb(84, 209, 18);
+  background: linear-gradient(
+    to right,
+    #c77cd9,
+    #8ab2f0
+  ); /* Slightly lighter pink-to-blue gradient on hover */
   transform: scale(1.1); /* Smooth scaling effect on hover */
 }

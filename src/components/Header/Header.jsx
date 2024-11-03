@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./header.module.css";
 import { FaPlay, FaHome } from "react-icons/fa";
-import logo from "../../English Cards Logo.png";
+import logo from "../../English Club Logo.png";
 
 function Header() {
   const navigate = useNavigate();

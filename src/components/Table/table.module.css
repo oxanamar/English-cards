@@ -1,7 +1,6 @@
-/* Error input styling for red borders */
-.errorInput {
-  border: 2px solid red;
-  border-radius: 8px;
+/* General styling */
+* {
+  font-family: "Arial", sans-serif;
 }
 
 .table-container {
@@ -13,9 +12,9 @@
 
 table {
   width: 80%;
-  background: linear-gradient(to right, #a4508b, #5f0a87);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  background: linear-gradient(to right, #b973c9, #6f3678);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
   overflow: hidden;
   margin: 2rem 0;
 }
@@ -24,74 +23,92 @@ th,
 td {
   padding: 12px 20px;
   text-align: center;
-  color: white;
+  color: #f4e1f4;
 }
 
 th {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4); /* Slight transparency for depth */
 }
 
 td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+/* Input styling */
 input[type="text"] {
   width: 80%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background-color: #ffffff;
-  color: #000;
+  background-color: #f3e8f3;
+  color: #3d2b3d;
+  transition: border 0.3s ease;
 }
 
+/* Error input styling */
+.table-container input[type="text"].errorInput {
+  border: 2px solid #ff6b6b; /* Bright red for error indication */
+}
+
+/* Button styling */
 button {
   color: white;
   padding: 8px 12px;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-right: 1.5px;
 }
 
+/* Save button */
 .btn-save {
-  background-color: rgb(84, 209, 18);
-  margin-right: 3px;
+  background: linear-gradient(to right, #d49acb, #a57fb1);
 }
 
 .btn-save:hover:enabled {
-  background-color: rgb(84, 194, 24);
+  background: linear-gradient(to right, #e6b0d3, #b990c3);
 }
 
-.btn-save:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.btn-clear {
-  background-color: #ff9800;
-}
-
-.btn-clear:hover {
-  background-color: #e68a00;
-}
-
+/* Edit button with pink-blue gradient */
 .btn-edit {
-  background-color: #2196f3;
-  margin-right: 3px;
+  background: linear-gradient(to right, #e6b0d3, #7ca6e8); /* Pink to blue */
 }
 
 .btn-edit:hover {
-  background-color: #0b7dda;
+  background: linear-gradient(
+    to right,
+    #f0c1db,
+    #9bc1f0
+  ); /* Lighter pink to lighter blue */
 }
 
+/* Clear button */
+.btn-clear {
+  background: linear-gradient(to right, #b388d1, #9462a8);
+}
+
+.btn-clear:hover {
+  background: linear-gradient(to right, #c4a0db, #a37ab2);
+}
+
+/* Cancel button */
+.btn-cancel {
+  background-color: rgba(255, 255, 255, 0.15); /* Lightly transparent */
+  color: #f4e1f4;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Delete button */
 .btn-delete {
-  background-color: #f44336;
+  background: linear-gradient(to right, #8a3b4e, #6e2d3d);
 }
 
 .btn-delete:hover {
-  background-color: #e53935;
+  background: linear-gradient(to right, #a04c63, #7f3a4e);
 }
 
+/* Responsive styling */
 @media (max-width: 731px) {
   th:nth-child(1),
   th:nth-child(3),

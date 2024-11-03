@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import data from "../../data";
-import { FaSave, FaPen, FaTrash, FaSyncAlt } from "react-icons/fa";
+import { FaSave, FaPen, FaTrash, FaSyncAlt, FaTimes } from "react-icons/fa";
 import styles from "./table.module.css";
 
 function Table() {
@@ -12,8 +12,14 @@ function Table() {
     collection: "",
   });
 
-  const [rows, setRows] = useState(data);
-  const [attemptedSave, setAttemptedSave] = useState(false);
+  const [rows, setRows] = useState(
+    data.map((row) => ({
+      ...row,
+      attemptedSave: false,
+      isEditing: false, // Track editing state here
+    }))
+  );
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const handleChange = (field, value) => {
     setInputData({
@@ -23,7 +29,6 @@ function Table() {
   };
 
   const saveRow = () => {
-    setAttemptedSave(true);
     if (
       inputData.id &&
       inputData.english &&
@@ -33,7 +38,12 @@ function Table() {
     ) {
       setRows([
         ...rows,
-        { ...inputData, tags: inputData.collection, isEditing: false },
+        {
+          ...inputData,
+          tags: inputData.collection,
+          isEditing: false,
+          attemptedSave: false,
+        },
       ]);
       setInputData({
         id: "",
@@ -42,11 +52,10 @@ function Table() {
         russian: "",
         collection: "",
       });
-      setAttemptedSave(false);
+    } else {
+      alert("Please fill in all fields.");
     }
   };
-
-  const isInputEmpty = (field) => !inputData[field].trim();
 
   const deleteRow = (index) => {
     if (window.confirm("Are you sure you want to delete this row?")) {
@@ -57,9 +66,13 @@ function Table() {
   };
 
   const toggleEdit = (index) => {
+    // Toggle edit state and store current row values for canceling
+    setEditingIndex(index);
     setRows(
       rows.map((row, i) =>
-        i === index ? { ...row, isEditing: !row.isEditing } : row
+        i === index
+          ? { ...row, isEditing: !row.isEditing, originalData: { ...row } }
+          : row
       )
     );
   };
@@ -71,7 +84,40 @@ function Table() {
   };
 
   const saveRowChanges = (index) => {
-    toggleEdit(index);
+    const row = rows[index];
+    const hasEmptyFields =
+      !row.id ||
+      !row.english ||
+      !row.transcription ||
+      !row.russian ||
+      !row.tags;
+
+    if (hasEmptyFields) {
+      setRows(
+        rows.map((row, i) =>
+          i === index ? { ...row, attemptedSave: true } : row
+        )
+      );
+      alert("An error occurred: please fill in all fields.");
+    } else {
+      console.log("Saved changes:", row);
+      setRows(
+        rows.map((row, i) => (i === index ? { ...row, isEditing: false } : row))
+      );
+      setEditingIndex(null);
+    }
+  };
+
+  const cancelEdit = (index) => {
+    // Restore original data if editing was in progress
+    setRows(
+      rows.map((row, i) =>
+        i === index
+          ? { ...row.originalData, isEditing: false, attemptedSave: false }
+          : row
+      )
+    );
+    setEditingIndex(null);
   };
 
   const clearInputs = () => {
@@ -82,7 +128,6 @@ function Table() {
       russian: "",
       collection: "",
     });
-    setAttemptedSave(false);
   };
 
   return (
@@ -105,9 +150,6 @@ function Table() {
                 type="text"
                 value={inputData.id}
                 onChange={(e) => handleChange("id", e.target.value)}
-                className={
-                  attemptedSave && isInputEmpty("id") ? styles.errorInput : ""
-                }
               />
             </td>
             <td>
@@ -115,11 +157,6 @@ function Table() {
                 type="text"
                 value={inputData.english}
                 onChange={(e) => handleChange("english", e.target.value)}
-                className={
-                  attemptedSave && isInputEmpty("english")
-                    ? styles.errorInput
-                    : ""
-                }
               />
             </td>
             <td>
@@ -127,11 +164,6 @@ function Table() {
                 type="text"
                 value={inputData.transcription}
                 onChange={(e) => handleChange("transcription", e.target.value)}
-                className={
-                  attemptedSave && isInputEmpty("transcription")
-                    ? styles.errorInput
-                    : ""
-                }
               />
             </td>
             <td>
@@ -139,11 +171,6 @@ function Table() {
                 type="text"
                 value={inputData.russian}
                 onChange={(e) => handleChange("russian", e.target.value)}
-                className={
-                  attemptedSave && isInputEmpty("russian")
-                    ? styles.errorInput
-                    : ""
-                }
               />
             </td>
             <td>
@@ -151,11 +178,6 @@ function Table() {
                 type="text"
                 value={inputData.collection}
                 onChange={(e) => handleChange("collection", e.target.value)}
-                className={
-                  attemptedSave && isInputEmpty("collection")
-                    ? styles.errorInput
-                    : ""
-                }
               />
             </td>
             <td>
@@ -180,7 +202,24 @@ function Table() {
 
           {rows.map((row, index) => (
             <tr key={row.id}>
-              <td>{row.id}</td>
+              <td>
+                {row.isEditing ? (
+                  <input
+                    type="text"
+                    value={row.id}
+                    onChange={(e) =>
+                      handleRowChange(index, "id", e.target.value)
+                    }
+                    className={
+                      editingIndex === index && row.attemptedSave && !row.id
+                        ? styles.errorInput
+                        : ""
+                    }
+                  />
+                ) : (
+                  row.id
+                )}
+              </td>
               <td>
                 {row.isEditing ? (
                   <input
@@ -188,6 +227,13 @@ function Table() {
                     value={row.english}
                     onChange={(e) =>
                       handleRowChange(index, "english", e.target.value)
+                    }
+                    className={
+                      editingIndex === index &&
+                      row.attemptedSave &&
+                      !row.english
+                        ? styles.errorInput
+                        : ""
                     }
                   />
                 ) : (
@@ -202,6 +248,13 @@ function Table() {
                     onChange={(e) =>
                       handleRowChange(index, "transcription", e.target.value)
                     }
+                    className={
+                      editingIndex === index &&
+                      row.attemptedSave &&
+                      !row.transcription
+                        ? styles.errorInput
+                        : ""
+                    }
                   />
                 ) : (
                   row.transcription
@@ -214,6 +267,13 @@ function Table() {
                     value={row.russian}
                     onChange={(e) =>
                       handleRowChange(index, "russian", e.target.value)
+                    }
+                    className={
+                      editingIndex === index &&
+                      row.attemptedSave &&
+                      !row.russian
+                        ? styles.errorInput
+                        : ""
                     }
                   />
                 ) : (
@@ -228,6 +288,11 @@ function Table() {
                     onChange={(e) =>
                       handleRowChange(index, "tags", e.target.value)
                     }
+                    className={
+                      editingIndex === index && row.attemptedSave && !row.tags
+                        ? styles.errorInput
+                        : ""
+                    }
                   />
                 ) : (
                   row.tags
@@ -235,12 +300,20 @@ function Table() {
               </td>
               <td>
                 {row.isEditing ? (
-                  <button
-                    className={styles["btn-save"]}
-                    onClick={() => saveRowChanges(index)}
-                  >
-                    <FaSave />
-                  </button>
+                  <>
+                    <button
+                      className={styles["btn-save"]}
+                      onClick={() => saveRowChanges(index)}
+                    >
+                      <FaSave />
+                    </button>
+                    <button
+                      className={styles["btn-cancel"]}
+                      onClick={() => cancelEdit(index)}
+                    >
+                      <FaTimes />
+                    </button>
+                  </>
                 ) : (
                   <button
                     className={styles["btn-edit"]}
@@ -249,12 +322,14 @@ function Table() {
                     <FaPen />
                   </button>
                 )}
-                <button
-                  className={styles["btn-delete"]}
-                  onClick={() => deleteRow(index)}
-                >
-                  <FaTrash />
-                </button>
+                {!row.isEditing && (
+                  <button
+                    className={styles["btn-delete"]}
+                    onClick={() => deleteRow(index)}
+                  >
+                    <FaTrash />
+                  </button>
+                )}
               </td>
             </tr>
           ))}
