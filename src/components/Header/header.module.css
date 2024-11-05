@@ -69,3 +69,35 @@
   ); /* Slightly lighter pink-to-blue gradient on hover */
   transform: scale(1.1); /* Smooth scaling effect on hover */
 }
+
+.login-button,
+.signup-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin: 0 10px;
+}
+
+/* Gradient style for Login button */
+.login-button {
+  background: linear-gradient(to right, #6a92e4, #8ab2f0);
+}
+
+.login-button:hover {
+  background: linear-gradient(to right, #547ac0, #7a99d8);
+  transform: scale(1.05);
+}
+
+/* Gradient style for Sign Up button */
+.signup-button {
+  background: linear-gradient(to right, #a4508b, #f0a6ca);
+}
+
+.signup-button:hover {
+  background: linear-gradient(to right, #c77cd9, #d18fb4);
+  transform: scale(1.05);
+}
