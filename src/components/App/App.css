@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap");
+
 body {
   background: linear-gradient(to right, #d49acb, #a07fb3);
+}
+
+* {
+  font-family: "PT Sans", sans-serif;
 }

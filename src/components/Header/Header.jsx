@@ -16,13 +16,13 @@ function Header({ isLandingPage }) {
         {isLandingPage ? (
           <>
             <button
-              onclick={() => navigate("/login")}
+              onClick={() => navigate("/login")}
               className={styles["login-button"]}
             >
               Login
             </button>
             <button
-              onClick={() => navigate("signup")}
+              onClick={() => navigate("/signup")}
               className={styles["signup-button"]}
             >
               Sign Up
