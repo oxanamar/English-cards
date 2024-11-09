@@ -1,8 +1,12 @@
+import React from "react";
+import styles from "./errorpage.module.css";
+
 function ErrorPage() {
   return (
-    <main>
+    <div className={styles.errorPage}>
       <h2>404 Not Found</h2>
-    </main>
+      <p>The page you're looking for doesn't exist.</p>
+    </div>
   );
 }
 

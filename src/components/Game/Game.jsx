@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import data from "../../data";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../AppContext/AppContext";
+import Loader from "../Loader/Loader"; // Import the Loader component
 import styles from "./game.module.css";
 
 function Game() {
+  const { words, loading, error } = useContext(AppContext);
+
   // Tracks the current card index
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   // Toggles the Russian translation
@@ -10,9 +13,13 @@ function Game() {
   // Stores the IDs of learned words
   const [learnedWords, setLearnedWords] = useState(new Set());
 
-  const currentCard = data[currentCardIndex];
+  // Display Loader while loading
+  if (loading) return <Loader />;
+  if (error) return <p className="error">{error}</p>;
 
-  // Function to mark a word as learned when "Check" is clicked
+  // Check if words array is not empty and get the current card
+  const currentCard = words.length > 0 ? words[currentCardIndex] : null;
+
   const handleCheck = () => {
     setShowRussian(true);
 
@@ -24,21 +31,21 @@ function Game() {
     });
   };
 
-  // Go to the next card
   const nextCard = () => {
-    if (currentCardIndex < data.length - 1) {
+    if (currentCardIndex < words.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
       setShowRussian(false); // Hide Russian translation for new card
     }
   };
 
-  // Go to the previous card
   const prevCard = () => {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
       setShowRussian(false); // Hide Russian translation for new card
     }
   };
+
+  if (!currentCard) return <p>No words available</p>;
 
   return (
     <div className={styles["game-container"]}>
@@ -73,7 +80,7 @@ function Game() {
           <button
             className={styles["btn-nav"]}
             onClick={nextCard}
-            disabled={currentCardIndex === data.length - 1}
+            disabled={currentCardIndex === words.length - 1}
           >
             &gt; {/* Right Arrow */}
           </button>
@@ -81,7 +88,7 @@ function Game() {
       </div>
 
       <p>
-        You've learned {learnedWords.size} out of {data.length} words!
+        You've learned {learnedWords.size} out of {words.length} words!
       </p>
     </div>
   );

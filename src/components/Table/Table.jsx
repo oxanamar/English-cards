@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import data from "../../data";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../AppContext/AppContext";
 import { FaSave, FaPen, FaTrash, FaSyncAlt, FaTimes } from "react-icons/fa";
+import Loader from "../Loader/Loader"; // Import the Loader component
 import styles from "./table.module.css";
 
 function Table() {
+  const { words, loading, error, addWord, updateWord, deleteWord } =
+    useContext(AppContext);
+
+  // State for managing form inputs
   const [inputData, setInputData] = useState({
     id: "",
     english: "",
@@ -12,13 +17,7 @@ function Table() {
     collection: "",
   });
 
-  const [rows, setRows] = useState(
-    data.map((row) => ({
-      ...row,
-      attemptedSave: false,
-      isEditing: false, // Track editing state here
-    }))
-  );
+  // State for editing mode
   const [editingIndex, setEditingIndex] = useState(null);
 
   const handleChange = (field, value) => {
@@ -36,15 +35,7 @@ function Table() {
       inputData.russian &&
       inputData.collection
     ) {
-      setRows([
-        ...rows,
-        {
-          ...inputData,
-          tags: inputData.collection,
-          isEditing: false,
-          attemptedSave: false,
-        },
-      ]);
+      addWord(inputData); // Add new word to context
       setInputData({
         id: "",
         english: "",
@@ -57,70 +48,18 @@ function Table() {
     }
   };
 
-  const deleteRow = (index) => {
-    if (window.confirm("Are you sure you want to delete this row?")) {
-      const updatedRows = [...rows];
-      updatedRows.splice(index, 1);
-      setRows(updatedRows);
-    }
-  };
-
-  const toggleEdit = (index) => {
-    // Toggle edit state and store current row values for canceling
+  const startEditing = (index, word) => {
     setEditingIndex(index);
-    setRows(
-      rows.map((row, i) =>
-        i === index
-          ? { ...row, isEditing: !row.isEditing, originalData: { ...row } }
-          : row
-      )
-    );
+    setInputData(word);
   };
 
-  const handleRowChange = (index, field, value) => {
-    setRows(
-      rows.map((row, i) => (i === index ? { ...row, [field]: value } : row))
-    );
-  };
-
-  const saveRowChanges = (index) => {
-    const row = rows[index];
-    const hasEmptyFields =
-      !row.id ||
-      !row.english ||
-      !row.transcription ||
-      !row.russian ||
-      !row.tags;
-
-    if (hasEmptyFields) {
-      setRows(
-        rows.map((row, i) =>
-          i === index ? { ...row, attemptedSave: true } : row
-        )
-      );
-      alert("An error occurred: please fill in all fields.");
-    } else {
-      console.log("Saved changes:", row);
-      setRows(
-        rows.map((row, i) => (i === index ? { ...row, isEditing: false } : row))
-      );
-      setEditingIndex(null);
-    }
-  };
-
-  const cancelEdit = (index) => {
-    // Restore original data if editing was in progress
-    setRows(
-      rows.map((row, i) =>
-        i === index
-          ? { ...row.originalData, isEditing: false, attemptedSave: false }
-          : row
-      )
-    );
+  const saveRowChanges = (id) => {
+    updateWord(id, inputData); // Update word in context
     setEditingIndex(null);
   };
 
-  const clearInputs = () => {
+  const cancelEdit = () => {
+    setEditingIndex(null);
     setInputData({
       id: "",
       english: "",
@@ -129,6 +68,10 @@ function Table() {
       collection: "",
     });
   };
+
+  // Display the Loader component if data is loading
+  if (loading) return <Loader />;
+  if (error) return <p className="error">{error}</p>;
 
   return (
     <div className={styles["table-container"]}>
@@ -144,6 +87,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
+          {/* Form for adding a new word */}
           <tr>
             <td>
               <input
@@ -181,154 +125,106 @@ function Table() {
               />
             </td>
             <td>
-              <button
-                className={styles["btn-save"]}
-                onClick={saveRow}
-                disabled={
-                  !inputData.id ||
-                  !inputData.english ||
-                  !inputData.transcription ||
-                  !inputData.russian ||
-                  !inputData.collection
-                }
-              >
+              <button className={styles["btn-save"]} onClick={saveRow}>
                 <FaSave />
               </button>
-              <button className={styles["btn-clear"]} onClick={clearInputs}>
+              <button className={styles["btn-clear"]} onClick={cancelEdit}>
                 <FaSyncAlt />
               </button>
             </td>
           </tr>
 
-          {rows.map((row, index) => (
-            <tr key={row.id}>
+          {/* Display words from context */}
+          {words.map((word, index) => (
+            <tr key={word.id}>
               <td>
-                {row.isEditing ? (
+                {editingIndex === index ? (
                   <input
                     type="text"
-                    value={row.id}
-                    onChange={(e) =>
-                      handleRowChange(index, "id", e.target.value)
-                    }
-                    className={
-                      editingIndex === index && row.attemptedSave && !row.id
-                        ? styles.errorInput
-                        : ""
-                    }
+                    value={inputData.id}
+                    onChange={(e) => handleChange("id", e.target.value)}
                   />
                 ) : (
-                  row.id
+                  word.id
                 )}
               </td>
               <td>
-                {row.isEditing ? (
+                {editingIndex === index ? (
                   <input
                     type="text"
-                    value={row.english}
-                    onChange={(e) =>
-                      handleRowChange(index, "english", e.target.value)
-                    }
-                    className={
-                      editingIndex === index &&
-                      row.attemptedSave &&
-                      !row.english
-                        ? styles.errorInput
-                        : ""
-                    }
+                    value={inputData.english}
+                    onChange={(e) => handleChange("english", e.target.value)}
                   />
                 ) : (
-                  row.english
+                  word.english
                 )}
               </td>
               <td>
-                {row.isEditing ? (
+                {editingIndex === index ? (
                   <input
                     type="text"
-                    value={row.transcription}
+                    value={inputData.transcription}
                     onChange={(e) =>
-                      handleRowChange(index, "transcription", e.target.value)
-                    }
-                    className={
-                      editingIndex === index &&
-                      row.attemptedSave &&
-                      !row.transcription
-                        ? styles.errorInput
-                        : ""
+                      handleChange("transcription", e.target.value)
                     }
                   />
                 ) : (
-                  row.transcription
+                  word.transcription
                 )}
               </td>
               <td>
-                {row.isEditing ? (
+                {editingIndex === index ? (
                   <input
                     type="text"
-                    value={row.russian}
-                    onChange={(e) =>
-                      handleRowChange(index, "russian", e.target.value)
-                    }
-                    className={
-                      editingIndex === index &&
-                      row.attemptedSave &&
-                      !row.russian
-                        ? styles.errorInput
-                        : ""
-                    }
+                    value={inputData.russian}
+                    onChange={(e) => handleChange("russian", e.target.value)}
                   />
                 ) : (
-                  row.russian
+                  word.russian
                 )}
               </td>
               <td>
-                {row.isEditing ? (
+                {editingIndex === index ? (
                   <input
                     type="text"
-                    value={row.tags}
-                    onChange={(e) =>
-                      handleRowChange(index, "tags", e.target.value)
-                    }
-                    className={
-                      editingIndex === index && row.attemptedSave && !row.tags
-                        ? styles.errorInput
-                        : ""
-                    }
+                    value={inputData.collection}
+                    onChange={(e) => handleChange("collection", e.target.value)}
                   />
                 ) : (
-                  row.tags
+                  word.collection
                 )}
               </td>
               <td>
-                {row.isEditing ? (
+                {editingIndex === index ? (
                   <>
                     <button
                       className={styles["btn-save"]}
-                      onClick={() => saveRowChanges(index)}
+                      onClick={() => saveRowChanges(word.id)}
                     >
                       <FaSave />
                     </button>
                     <button
                       className={styles["btn-cancel"]}
-                      onClick={() => cancelEdit(index)}
+                      onClick={cancelEdit}
                     >
                       <FaTimes />
                     </button>
                   </>
                 ) : (
-                  <button
-                    className={styles["btn-edit"]}
-                    onClick={() => toggleEdit(index)}
-                  >
-                    <FaPen />
-                  </button>
-                )}
-                {!row.isEditing && (
-                  <button
-                    className={styles["btn-delete"]}
-                    onClick={() => deleteRow(index)}
-                  >
-                    <FaTrash />
-                  </button>
+                  <>
+                    <button
+                      className={styles["btn-edit"]}
+                      onClick={() => startEditing(index, word)}
+                    >
+                      <FaPen />
+                    </button>
+                    <button
+                      className={styles["btn-delete"]}
+                      onClick={() => deleteWord(word.id)}
+                    >
+                      <FaTrash />
+                    </button>
+                  </>
                 )}
               </td>
             </tr>
