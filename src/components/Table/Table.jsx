@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../AppContext/AppContext";
 import { FaSave, FaPen, FaTrash, FaSyncAlt, FaTimes } from "react-icons/fa";
-import Loader from "../Loader/Loader"; // Import the Loader component
+import Loader from "../Loader/Loader";
 import styles from "./table.module.css";
 
 function Table() {
   const { words, loading, error, addWord, updateWord, deleteWord } =
     useContext(AppContext);
 
-  // State for managing form inputs
+  // State for managing form inputs and validation errors
   const [inputData, setInputData] = useState({
     id: "",
     english: "",
@@ -16,8 +16,8 @@ function Table() {
     russian: "",
     collection: "",
   });
+  const [validationError, setValidationError] = useState(false);
 
-  // State for editing mode
   const [editingIndex, setEditingIndex] = useState(null);
 
   const handleChange = (field, value) => {
@@ -25,16 +25,19 @@ function Table() {
       ...inputData,
       [field]: value,
     });
+    // Reset validation error when input changes
+    setValidationError(false);
   };
 
   const saveRow = () => {
-    if (
+    const isValid =
       inputData.id &&
       inputData.english &&
       inputData.transcription &&
       inputData.russian &&
-      inputData.collection
-    ) {
+      inputData.collection;
+
+    if (isValid) {
       addWord(inputData); // Add new word to context
       setInputData({
         id: "",
@@ -44,6 +47,7 @@ function Table() {
         collection: "",
       });
     } else {
+      setValidationError(true);
       alert("Please fill in all fields.");
     }
   };
@@ -69,7 +73,6 @@ function Table() {
     });
   };
 
-  // Display the Loader component if data is loading
   if (loading) return <Loader />;
   if (error) return <p className="error">{error}</p>;
 
@@ -94,6 +97,9 @@ function Table() {
                 type="text"
                 value={inputData.id}
                 onChange={(e) => handleChange("id", e.target.value)}
+                className={
+                  validationError && !inputData.id ? styles.errorInput : ""
+                }
               />
             </td>
             <td>
@@ -101,6 +107,9 @@ function Table() {
                 type="text"
                 value={inputData.english}
                 onChange={(e) => handleChange("english", e.target.value)}
+                className={
+                  validationError && !inputData.english ? styles.errorInput : ""
+                }
               />
             </td>
             <td>
@@ -108,6 +117,11 @@ function Table() {
                 type="text"
                 value={inputData.transcription}
                 onChange={(e) => handleChange("transcription", e.target.value)}
+                className={
+                  validationError && !inputData.transcription
+                    ? styles.errorInput
+                    : ""
+                }
               />
             </td>
             <td>
@@ -115,6 +129,9 @@ function Table() {
                 type="text"
                 value={inputData.russian}
                 onChange={(e) => handleChange("russian", e.target.value)}
+                className={
+                  validationError && !inputData.russian ? styles.errorInput : ""
+                }
               />
             </td>
             <td>
@@ -122,6 +139,11 @@ function Table() {
                 type="text"
                 value={inputData.collection}
                 onChange={(e) => handleChange("collection", e.target.value)}
+                className={
+                  validationError && !inputData.collection
+                    ? styles.errorInput
+                    : ""
+                }
               />
             </td>
             <td>
