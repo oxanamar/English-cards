@@ -14,7 +14,7 @@ function Table() {
     english: "",
     transcription: "",
     russian: "",
-    collection: "",
+    tags: "", // Collection (displayed as 'Collection' in UI)
   });
   const [validationError, setValidationError] = useState(false);
 
@@ -25,7 +25,6 @@ function Table() {
       ...inputData,
       [field]: value,
     });
-    // Reset validation error when input changes
     setValidationError(false);
   };
 
@@ -35,16 +34,16 @@ function Table() {
       inputData.english &&
       inputData.transcription &&
       inputData.russian &&
-      inputData.collection;
+      inputData.tags;
 
     if (isValid) {
-      addWord(inputData); // Add new word to context
+      addWord(inputData);
       setInputData({
         id: "",
         english: "",
         transcription: "",
         russian: "",
-        collection: "",
+        tags: "",
       });
     } else {
       setValidationError(true);
@@ -58,7 +57,7 @@ function Table() {
   };
 
   const saveRowChanges = (id) => {
-    updateWord(id, inputData); // Update word in context
+    updateWord(id, inputData);
     setEditingIndex(null);
   };
 
@@ -69,7 +68,7 @@ function Table() {
       english: "",
       transcription: "",
       russian: "",
-      collection: "",
+      tags: "",
     });
   };
 
@@ -137,12 +136,10 @@ function Table() {
             <td>
               <input
                 type="text"
-                value={inputData.collection}
-                onChange={(e) => handleChange("collection", e.target.value)}
+                value={inputData.tags}
+                onChange={(e) => handleChange("tags", e.target.value)}
                 className={
-                  validationError && !inputData.collection
-                    ? styles.errorInput
-                    : ""
+                  validationError && !inputData.tags ? styles.errorInput : ""
                 }
               />
             </td>
@@ -209,11 +206,11 @@ function Table() {
                 {editingIndex === index ? (
                   <input
                     type="text"
-                    value={inputData.collection}
-                    onChange={(e) => handleChange("collection", e.target.value)}
+                    value={inputData.tags}
+                    onChange={(e) => handleChange("tags", e.target.value)}
                   />
                 ) : (
-                  word.collection
+                  word.tags
                 )}
               </td>
               <td>
