@@ -6,7 +6,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  justify-content: center;
+  /* height: 100vh; */
+  margin: 200px 0;
 }
 
 .card-navigation {
