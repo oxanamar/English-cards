@@ -1,4 +1,4 @@
-# English Cards 🔠🧑🏼‍🎓
+# English Cards 🔠📚 
 
 English Cards is an interactive React-based web application designed to facilitate English language learning. The app features vocabulary flashcards, a CRUD table for managing words, and a gamified interface to enhance user engagement and vocabulary retention.
 
