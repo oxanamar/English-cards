@@ -19,8 +19,6 @@ English Cards is an interactive React-based web application designed to facilita
 - **Progress Tracking**:  
   Track the number of words learned with visual feedback during gameplay.
 
-- **Error Handling**:  
-  Custom 404 page for invalid routes.
 
 
 ## 🛠️ Tech Stack
