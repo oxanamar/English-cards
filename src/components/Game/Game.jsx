@@ -1,90 +1,85 @@
 import React, { useState } from "react";
-import data from "../../data";
+import { observer } from "mobx-react-lite";
+import { wordStore } from "../../stores/WordStore";
 import styles from "./game.module.css";
 
-function Game() {
-  // Tracks the current card index
+const Game = observer(() => {
+  const { words } = wordStore;
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  // Toggles the Russian translation
   const [showRussian, setShowRussian] = useState(false);
-  // Stores the IDs of learned words
   const [learnedWords, setLearnedWords] = useState(new Set());
 
-  const currentCard = data[currentCardIndex];
+  if (words.length === 0)
+    return <p className={styles.noWords}>No words available</p>;
 
-  // Function to mark a word as learned when "Check" is clicked
+  const currentCard = words[currentCardIndex];
+
   const handleCheck = () => {
     setShowRussian(true);
-
-    // Add the current word to the set of learned words (avoiding duplicates)
     setLearnedWords((prevLearnedWords) => {
       const updatedSet = new Set(prevLearnedWords);
-      updatedSet.add(currentCardIndex); // Track word by its index
+      updatedSet.add(currentCardIndex);
       return updatedSet;
     });
   };
 
-  // Go to the next card
+  const handleTranslationClick = () => {
+    setShowRussian(false);
+  };
+
   const nextCard = () => {
-    if (currentCardIndex < data.length - 1) {
+    if (currentCardIndex < words.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
-      setShowRussian(false); // Hide Russian translation for new card
+      setShowRussian(false);
     }
   };
 
-  // Go to the previous card
   const prevCard = () => {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
-      setShowRussian(false); // Hide Russian translation for new card
+      setShowRussian(false);
     }
   };
 
   return (
     <div className={styles["game-container"]}>
       <div className={styles["card-navigation"]}>
-        <div className={styles["navigation"]}>
-          <button
-            className={styles["btn-nav"]}
-            onClick={prevCard}
-            disabled={currentCardIndex === 0}
-          >
-            &lt; {/* Left Arrow */}
-          </button>
+        <button
+          className={styles["btn-nav"]}
+          onClick={prevCard}
+          disabled={currentCardIndex === 0}
+        >
+          &lt;
+        </button>
 
-          <div className={styles.card}>
-            <h2>{currentCard.english}</h2>
-            <p>{currentCard.transcription}</p>
-
-            {showRussian ? (
-              <p
-                className={styles.russian}
-                onClick={() => setShowRussian(false)}
-              >
-                {currentCard.russian}
-              </p>
-            ) : (
-              <button className={styles["btn-check"]} onClick={handleCheck}>
-                Check
-              </button>
-            )}
-          </div>
-
-          <button
-            className={styles["btn-nav"]}
-            onClick={nextCard}
-            disabled={currentCardIndex === data.length - 1}
-          >
-            &gt; {/* Right Arrow */}
-          </button>
+        <div className={styles.card}>
+          <h2>{currentCard.english}</h2>
+          <p className={styles.transcription}>{currentCard.transcription}</p>
+          {showRussian ? (
+            <p className={styles.russian} onClick={handleTranslationClick}>
+              {currentCard.russian}
+            </p>
+          ) : (
+            <button className={styles["btn-check"]} onClick={handleCheck}>
+              CHECK
+            </button>
+          )}
         </div>
+
+        <button
+          className={styles["btn-nav"]}
+          onClick={nextCard}
+          disabled={currentCardIndex === words.length - 1}
+        >
+          &gt;
+        </button>
       </div>
 
-      <p>
-        You've learned {learnedWords.size} out of {data.length} words!
+      <p className={styles.progress}>
+        You’ve learned {learnedWords.size} out of {words.length} words!
       </p>
     </div>
   );
-}
+});
 
 export default Game;

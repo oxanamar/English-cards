@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 60px;
+  font-family: Arial, sans-serif;
 }
 
 .card-navigation {
@@ -19,58 +20,47 @@
 
 .card {
   padding: 20px;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  min-height: 250px;
   text-align: center;
   background-color: #6d547e;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   color: #fff;
 }
 
 .card h2 {
   color: #ffffff;
-  margin-bottom: 10px;
-  margin-top: 50px;
-  font-size: 24px;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 26px;
   font-weight: bold;
 }
 
-.card p {
-  color: #ffffff;
+.transcription {
+  color: #d3d3d3;
   font-size: 18px;
 }
 
 .btn-check {
   padding: 10px 20px;
-  background: linear-gradient(
-    to right,
-    #a4508b,
-    #6a92e4
-  ); /* Pink to blue gradient */
+  margin: 20px 0;
+  background: linear-gradient(135deg, #a4508b, #6a92e4);
   color: #fff;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  text-transform: uppercase;
+  font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .btn-check:hover {
-  background: linear-gradient(
-    to right,
-    #c77cd9,
-    #8ab2f0
-  ); /* Lighter pink to lighter blue for hover */
+  background: linear-gradient(135deg, #c77cd9, #8ab2f0);
   transform: scale(1.05);
 }
 
 .russian {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  cursor: pointer;
+  margin: 20px 0;
   color: #ffffff;
   font-size: 20px;
   font-weight: bold;
@@ -86,23 +76,29 @@
 .btn-nav {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
   color: #ffffff;
   transition: color 0.3s ease;
 }
 
 .btn-nav:disabled {
-  color: #ccc;
+  color: #cccccc;
 }
 
-.btn-nav:hover {
+.btn-nav:hover:not(:disabled) {
   color: #a4508b;
-  background-color: transparent;
 }
 
-p {
-  margin-top: 10px;
-  font-size: 14px;
+.progress {
+  font-size: 16px;
   color: #ffffff;
+  margin-top: 10px;
+}
+
+.noWords {
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 100px;
 }
