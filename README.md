@@ -25,8 +25,6 @@
 ## Tech Stack
 
 <img align="left" alt="React.js" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" />
-<img align="left" alt="React Router" width="26px" src="https://upload.wikimedia.org/wikipedia/commons/d/d1/React_Router_logo.svg" style="padding-right:10px;" />
-<img align="left" alt="CSS Modules" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="padding-right:10px;" />
 
 
 ---
