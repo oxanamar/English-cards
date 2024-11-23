@@ -1,4 +1,3 @@
-// src/context/WordContext.js
 import React, { createContext } from "react";
 import { wordStore } from "../stores/WordStore";
 
