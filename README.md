@@ -33,7 +33,7 @@ English Cards is an interactive React-based web application designed to facilita
 
 #### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/oxanamar/english-cards.git
+git clone https://github.com/oxanamar/English-cards.git
 cd English-cards
 ```
 
