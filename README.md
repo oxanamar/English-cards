@@ -133,25 +133,6 @@
    - Useful for initializing the application or testing features without relying on the API.
 
 
-## Installation and Setup
-
-#### Step 1: Clone the Repository
-```bash
-git clone https://github.com/oxanamar/English-cards.git
-cd English-cards
-```
-
-#### Step 2: Install dependencies
-Inside the project directory, run the following command to install Express and other dependencies:
-```bash
-npm install
-```
-
-#### Step 3: Start the development server
-```bash
-npm start
-```
-
 ## 🔮 Future Enhancements
 
 - **User Accounts:**  
@@ -166,11 +147,34 @@ npm start
 - **Speech Recognition:**  
   Integrating a speech recognition feature would let users practice pronunciation and improve their speaking skills.
 
+## Installation and Setup
+
+#### Step 1: Clone the Repository
+Clone the project to your local machine using the following command:
+
+```bash
+git clone https://github.com/oxanamar/English-cards.git
+cd English-cards
+```
+
+#### Step 2: Install dependencies
+Navigate to the project directory and install all necessary dependencies:
+
+```bash
+npm install
+```
+
+#### Step 3: Start the development server
+Run the following command to start the application locally:
+
+```bash
+npm start
+```
+
+#### Step 4: Open your browser and go to `http://localhost:3000` to explore the English Cards app! 🎉
 
 
 
 
 
-
-#### Step 4: Open your browser and go to `http://localhost:3000` to see the project in action 🙌🏻
 
