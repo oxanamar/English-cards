@@ -51,12 +51,6 @@
   The app interacts with a REST API hosted at [http://itgirlschool.justmakeit.ru/api/words](http://itgirlschool.justmakeit.ru/api/words) to manage vocabulary data.
 
 
-
-
-<br>
-<br>
-
-
 ## 📂 File-by-File Explanation
 `src/components/App.jsx`
  - Purpose:
