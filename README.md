@@ -147,7 +147,7 @@
 - **Speech Recognition:**  
   Integrating a speech recognition feature would let users practice pronunciation and improve their speaking skills.
 
-## Installation and Setup
+## 🚀 Installation and Setup
 
 #### Step 1: Clone the Repository
 Clone the project to your local machine using the following command:
