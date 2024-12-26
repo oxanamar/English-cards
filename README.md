@@ -25,22 +25,24 @@
 
 ## 🛠️ Tech Stack
 
-- React.js
+#Frontend:
+
+- React.js:
 Used for building dynamic, reusable, and interactive UI components.
 
-- React Router
+- React Router:
 Enables client-side routing and navigation between different pages.
 
-- MobX
+- MobX:
 Utilized for state management, providing reactive updates to the application's state.
 
-- CSS Modules
+- CSS Modules:
 Scoped CSS for styling components, ensuring no global namespace conflicts.
 
-- React Icons
+- React Icons:
 Integrated for adding scalable vector icons to enhance the UI.
 
-- Axios
+- Axios:
 For handling HTTP requests to the API, performing CRUD operations efficiently.
 
 
