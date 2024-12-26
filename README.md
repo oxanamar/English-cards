@@ -1,7 +1,10 @@
 # English Cards 🔠📚 
 
-#### Video Demo: https://youtu.be/LlFKP6RJas4
-#### Description: English Cards is an interactive web application designed for English language learners of all levels. The app serves as a personal vocabulary manager and interactive flashcard game, offering a unique blend of structured learning and gamified elements. Users can explore, manage, and practice a customizable collection of English words. Unlike traditional learning methods, English Cards emphasizes engagement and efficiency by integrating dynamic flashcards, real-time updates, and progress tracking into a single intuitive interface.
+<p>Video Demo: https://youtu.be/LlFKP6RJas4</p>
+<p>
+Description: English Cards is an interactive web application designed for English language learners of all levels. The app serves as a personal vocabulary manager and interactive flashcard game, offering a unique blend of structured learning and gamified elements. Users can explore, manage, and practice a customizable collection of English words. Unlike traditional learning methods, English Cards emphasizes engagement and efficiency by integrating dynamic flashcards, real-time updates, and progress tracking into a single intuitive interface.
+</p>
+
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
   <img src="https://github.com/user-attachments/assets/d17f7675-8351-43ac-b3cb-52f8b83c65c8" alt="eng-cards1" width="45%" style="margin-right: 10px;" />
