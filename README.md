@@ -25,7 +25,7 @@
 
 ## 🛠️ Tech Stack
 
-## **Frontend**
+### **Frontend**
 
 - **React.js:**  
   Used for building dynamic, reusable, and interactive UI components.
@@ -42,7 +42,7 @@
 - **React Icons:**  
   Integrated for adding scalable vector icons to enhance the UI.
 
-## **Backend API**
+### **Backend API**
 
 - **Axios:**  
   For handling HTTP requests to the API, performing CRUD operations efficiently.
