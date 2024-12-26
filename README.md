@@ -76,12 +76,29 @@
  - Key Features:
    - Displays a simple "404 Not Found" message.
   
-`src/components/ErrorPage/ErrorPage.jsx`
+`src/stores/WordStore.js`
  - Purpose:
-   Handles undefined routes in the application by displaying a user-friendly 404 error message.
+   Manages the state of words using MobX. Handles CRUD operations for words and communicates with the API.
  - Key Features:
-   - Displays a simple "404 Not Found" message.
-   - Ensures a smooth user experience for invalid or broken links.
+   - `fetchWords`: Fetches all words from the API.
+   - `addWord`: Sends a POST request to add a new word.
+   - `updateWord`: Updates an existing word via the API.
+   - `deleteWord`: Deletes a word by ID using the API.
+   - Utilizes MobX's `makeAutoObservable` for reactive state management and `runInAction` to update state safely.
+  
+`src/context/WordContext.js`
+ - Purpose:
+    Provides a global context for accessing `WordStore` across the application.
+ - Key Features:
+   - Creates a React context for `WordStore`.
+   - Wraps the application in `WordProvider`, allowing child components to access the word store.
+  
+`src/data.js`
+ - Purpose:
+    Contains static sample data for testing or fallback purposes.
+ - Key Features:
+   - Includes an array of objects representing words with their `id`, `english`, `transcription`, `russian`, `tags`, and `tags_json`.
+   - Useful for initializing the application or testing features without relying on the API.
 
 
 ## Installation and Setup
