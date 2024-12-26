@@ -15,7 +15,7 @@
   Users can navigate through a set of vocabulary cards, each featuring an English word, its transcription, and its translation. Cards are displayed one at a time to mimic traditional flashcards, with a "Check" button to reveal the translation. Clicking the translation toggles back to the "Check" button, encouraging active recall.
 
 - **CRUD Table for Word Management**:  
-  A dedicated table enables users to manage their vocabulary dynamically. Words can be added with real-time validation to ensure no field is left empty, edited to update existing entries, and deleted when no longer needed.
+  A dedicated table enables users to manage their vocabulary dynamically. Words can be added with real-time validation to ensure no field is left empty, edited to update existing entries, and deleted when no longer needed. This feature is powered by a backend API that synchronizes changes in real time.
 
 - **Progress Tracking**:  
   The app tracks the number of words users have learned. Progress is displayed prominently, motivating users to continue learning and achieve their language goals.
@@ -25,7 +25,25 @@
 
 ## 🛠️ Tech Stack
 
-<img align="left" alt="React.js" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" />
+<img align="left" alt="React.js" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" /> React.js
+Used for building dynamic, reusable, and interactive UI components.
+
+<img align="left" alt="React Router" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" /> React Router
+Enables client-side routing and navigation between different pages.
+
+<img align="left" alt="MobX" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:10px;" /> MobX
+Utilized for state management, providing reactive updates to the application's state.
+
+<img align="left" alt="CSS Modules" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="padding-right:10px;" /> CSS Modules
+Scoped CSS for styling components, ensuring no global namespace conflicts.
+
+<img align="left" alt="React Icons" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" /> React Icons
+Integrated for adding scalable vector icons to enhance the UI.
+
+<img align="left" alt="Axios" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:10px;" /> Axios
+For handling HTTP requests to the API, performing CRUD operations efficiently.
+
+
 
 <br>
 <br>
