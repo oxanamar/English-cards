@@ -25,25 +25,31 @@
 
 ## 🛠️ Tech Stack
 
-#Frontend:
+## **Frontend**
 
-- React.js:
-Used for building dynamic, reusable, and interactive UI components.
+- **React.js:**  
+  Used for building dynamic, reusable, and interactive UI components.
 
-- React Router:
-Enables client-side routing and navigation between different pages.
+- **React Router:**  
+  Enables client-side routing and navigation between different pages.
 
-- MobX:
-Utilized for state management, providing reactive updates to the application's state.
+- **MobX:**  
+  Utilized for state management, providing reactive updates to the application's state.
 
-- CSS Modules:
-Scoped CSS for styling components, ensuring no global namespace conflicts.
+- **CSS Modules:**  
+  Scoped CSS for styling components, ensuring no global namespace conflicts.
 
-- React Icons:
-Integrated for adding scalable vector icons to enhance the UI.
+- **React Icons:**  
+  Integrated for adding scalable vector icons to enhance the UI.
 
-- Axios:
-For handling HTTP requests to the API, performing CRUD operations efficiently.
+## **Backend API**
+
+- **Axios:**  
+  For handling HTTP requests to the API, performing CRUD operations efficiently.
+
+- **Custom REST API:**  
+  The app interacts with a REST API hosted at [http://itgirlschool.justmakeit.ru/api/words](http://itgirlschool.justmakeit.ru/api/words) to manage vocabulary data.
+
 
 
 
