@@ -51,6 +51,18 @@
   The app interacts with a REST API hosted at [http://itgirlschool.justmakeit.ru/api/words](http://itgirlschool.justmakeit.ru/api/words) to manage vocabulary data.
 
 
+## 👩🏼‍🎨 Design Choices
+
+- **Use of MobX for State Management:**  
+  MobX was chosen for its simplicity and ease of integration with React components. Its observable state and action-based updates make it well-suited for managing dynamic data like the word list.
+
+- **Dynamic Flashcard Design:**  
+  The flashcards use active recall principles to enhance memory retention. The toggle functionality for translations ensures that users engage actively with the content.
+
+- **Separation of Concerns:**  
+  The project follows a modular structure, with separate files for components, state management, and styles. This improves maintainability and scalability.
+
+
 ## 📂 File-by-File Explanation
 `src/components/App.jsx`
  - Purpose:
@@ -139,6 +151,26 @@ npm install
 ```bash
 npm start
 ```
+
+## 🔮 Future Enhancements
+
+- **User Accounts:**  
+  Integrating user accounts would allow learners to save their progress and access their vocabulary on different devices.
+
+- **Advanced Analytics:**  
+  Adding detailed progress tracking and statistics, such as time spent learning and accuracy rates, would provide more insights into user performance.
+
+- **Word Categories:**  
+  Grouping words into categories like "Business", "Travel", and "Everyday Vocabulary" would help users focus on specific areas.
+
+- **Speech Recognition:**  
+  Integrating a speech recognition feature would let users practice pronunciation and improve their speaking skills.
+
+
+
+
+
+
 
 #### Step 4: Open your browser and go to `http://localhost:3000` to see the project in action 🙌🏻
 
