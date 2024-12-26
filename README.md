@@ -25,22 +25,22 @@
 
 ## 🛠️ Tech Stack
 
-<img align="left" alt="React.js" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" /> React.js
+- React.js
 Used for building dynamic, reusable, and interactive UI components.
 
-<img align="left" alt="React Router" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" /> React Router
+- React Router
 Enables client-side routing and navigation between different pages.
 
-<img align="left" alt="MobX" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:10px;" /> MobX
+- MobX
 Utilized for state management, providing reactive updates to the application's state.
 
-<img align="left" alt="CSS Modules" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="padding-right:10px;" /> CSS Modules
+- CSS Modules
 Scoped CSS for styling components, ensuring no global namespace conflicts.
 
-<img align="left" alt="React Icons" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" style="padding-right:10px;" /> React Icons
+- React Icons
 Integrated for adding scalable vector icons to enhance the UI.
 
-<img align="left" alt="Axios" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" style="padding-right:10px;" /> Axios
+- Axios
 For handling HTTP requests to the API, performing CRUD operations efficiently.
 
 
