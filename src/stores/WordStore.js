@@ -1,4 +1,3 @@
-// WordStore.js
 import { makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
 
