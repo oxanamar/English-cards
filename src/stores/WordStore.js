@@ -1,7 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
 
-const API_URL = "http://itgirlschool.justmakeit.ru/api/words";
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "http://itgirlschool.justmakeit.ru/api/words";
 
 class WordStore {
   words = [];
