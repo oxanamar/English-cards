@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import axios from "axios";
 
-const API_URL = "/api/words";
+const API_URL = "http://localhost:5001/api/proxy";
 
 class WordStore {
   words = [];
