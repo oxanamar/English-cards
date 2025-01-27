@@ -52,10 +52,16 @@ class WordStore {
 
   updateWord = async (id, updatedWord) => {
     try {
-      await axios.post(`${API_URL}/${id}/update`, updatedWord);
+      const response = await axios.post(
+        `${API_URL}/${id}/update`,
+        updatedWord,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       runInAction(() => {
         const index = this.words.findIndex((word) => word.id === id);
-        if (index !== -1) this.words[index] = updatedWord;
+        if (index !== -1) this.words[index] = response.data;
       });
     } catch (error) {
       runInAction(() => {
